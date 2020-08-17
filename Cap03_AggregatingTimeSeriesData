@@ -1,4 +1,5 @@
 -- Summarize data over a time frame
+
 SELECT
 	it.IncidentType,
 	COUNT(1) AS NumberOfRows,
@@ -14,3 +15,11 @@ WHERE
 	ir.IncidentDate BETWEEN '2019-08-01' AND '2019-10-31'
 GROUP BY
 	it.IncidentType;
+
+-- Calculating distinct counts
+SELECT
+	COUNT(DISTINCT ir.IncidentTypeID) AS NumberOfIncidentTypes,
+	COUNT(DISTINCT ir.IncidentDate) AS NumberOfDaysWithIncidents
+FROM dbo.IncidentRollup ir
+WHERE
+ir.IncidentDate BETWEEN '2019-08-01' AND '2019-10-31';
